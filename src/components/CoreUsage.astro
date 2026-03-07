@@ -1,0 +1,230 @@
+---
+const examples = [
+  {
+    title: "Define Components",
+    description: "Create typed components with Pydantic v2 models.",
+    code: `from cryo_wiring_core import (
+    CooldownBuilder, ChipConfig, CooldownMetadata,
+    Attenuator, Filter, Isolator, Amplifier, Stage,
+)
+
+catalog = {
+    "XMA-10dB": Attenuator(manufacturer="XMA", model="2082-6431-10", value_dB=10),
+    "XMA-20dB": Attenuator(manufacturer="XMA", model="2082-6431-20", value_dB=20),
+    "Eccosorb":  Filter(manufacturer="XMA", model="EF-03", filter_type="Eccosorb"),
+    "K&L-LPF":  Filter(manufacturer="K&L", model="5VLF", filter_type="Lowpass"),
+    "LNF-HEMT": Amplifier(manufacturer="LNF", model="LNC03_14A", amplifier_type="HEMT", gain_dB=40),
+    "LNF-ISO":  Isolator(manufacturer="LNF", model="ISC4_12A"),
+}`,
+  },
+  {
+    title: "Build a Cooldown",
+    description: "Fluent builder API with per-line overrides.",
+    code: `cooldown = (
+    CooldownBuilder(
+        chip=ChipConfig(name="sample-8q", num_qubits=8, qubits_per_readout_line=4),
+        metadata=CooldownMetadata(fridge="my-cryo", cooldown_id="cd001", date="2026-03-06"),
+        catalog=catalog,
+        control={
+            Stage.K50:  ["XMA-10dB"],
+            Stage.K4:   ["XMA-20dB"],
+            Stage.MXC:  ["XMA-20dB", "Eccosorb"],
+        },
+        readout_return={
+            Stage.K50: ["LNF-HEMT"],
+            Stage.CP:  ["LNF-ISO", "LNF-ISO"],
+        },
+    )
+    .add("C00", Stage.STILL, "K&L-LPF")       # per-line override
+    .remove("RR00", Stage.CP, index=1)          # remove second isolator on RR00
+    .representative("C00", "RS00", "RR00")      # mark lines for diagram
+    .build()
+)`,
+  },
+  {
+    title: "Summary & Diagram",
+    description: "Generate terminal tables, Markdown, HTML, and publication-quality SVG diagrams.",
+    code: `# Print a Rich-formatted table to the terminal
+cooldown.summary()
+
+# Export as Markdown or HTML
+md = cooldown.summary(fmt="markdown")
+html = cooldown.summary(fmt="html")
+
+# Generate a publication-quality wiring diagram
+cooldown.diagram(output="wiring.svg", representative=True)`,
+  },
+  {
+    title: "Export & Validate",
+    description: "Write YAML files and validate against the spec.",
+    code: `# Export as a cooldown directory
+cooldown.write("output/")
+# output/
+# ├── metadata.yaml
+# ├── chip.yaml
+# ├── components.yaml
+# ├── control.yaml
+# ├── readout_send.yaml
+# └── readout_return.yaml
+
+# Validate existing YAML files
+from cryo_wiring_core import validate_wiring
+validate_wiring(data)  # raises jsonschema.ValidationError on failure`,
+  },
+];
+---
+
+<section id="core-usage" class="section">
+  <div class="container">
+    <h2 class="section-title">Python API</h2>
+    <p class="section-subtitle">
+      Build, validate, and visualize wiring configurations programmatically with
+      <code class="inline-code">cryo-wiring-core</code>.
+    </p>
+    <div class="examples">
+      {
+        examples.map((example, i) => (
+          <div class="example-card">
+            <div class="example-header">
+              <span class="example-number">{String(i + 1).padStart(2, "0")}</span>
+              <div>
+                <h3 class="example-title">{example.title}</h3>
+                <p class="example-description">{example.description}</p>
+              </div>
+            </div>
+            <pre class="example-code"><code>{example.code}</code></pre>
+          </div>
+        ))
+      }
+    </div>
+    <div class="core-links">
+      <a
+        href="https://cryo-wiring.github.io/core/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="core-link"
+      >
+        API Reference
+      </a>
+      <a
+        href="https://github.com/cryo-wiring/core/blob/main/examples/getting_started.py"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="core-link core-link-secondary"
+      >
+        Interactive Notebook
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .inline-code {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--color-primary);
+  }
+
+  .examples {
+    max-width: 780px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .example-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .example-card:hover {
+    border-color: rgba(56, 189, 248, 0.3);
+  }
+
+  .example-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .example-number {
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    padding: 0.25rem 0.5rem;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 0.25rem;
+    background: rgba(56, 189, 248, 0.05);
+    margin-top: 0.125rem;
+  }
+
+  .example-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  .example-description {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
+  .example-code {
+    padding: 1.25rem 1.5rem;
+    overflow-x: auto;
+    margin: 0;
+  }
+
+  .example-code code {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--color-success);
+    line-height: 1.65;
+    white-space: pre;
+  }
+
+  .core-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .core-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.625rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    color: var(--color-primary);
+    transition: all 0.2s;
+  }
+
+  .core-link:hover {
+    background: rgba(56, 189, 248, 0.2);
+    color: var(--color-primary);
+  }
+
+  .core-link-secondary {
+    background: transparent;
+    border-color: var(--color-border);
+    color: var(--color-text-muted);
+  }
+
+  .core-link-secondary:hover {
+    border-color: rgba(56, 189, 248, 0.3);
+    color: var(--color-text);
+  }
+</style>
