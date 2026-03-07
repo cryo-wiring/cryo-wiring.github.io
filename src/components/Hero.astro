@@ -5,6 +5,7 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="container hero-content">
+    <img src="/logo.png" alt="cryo-wiring" class="hero-logo" />
     <p class="hero-badge">Open Source &middot; MIT License</p>
     <h1 class="hero-title">
       Documentation for<br />
@@ -16,6 +17,14 @@
     </p>
     <div class="hero-actions">
       <a href="#quickstart" class="btn btn-primary">Get Started</a>
+      <a
+        href="https://cryo-wiring.github.io/viewer/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-viewer"
+      >
+        Try the Viewer
+      </a>
       <a
         href="https://github.com/cryo-wiring"
         target="_blank"
@@ -57,6 +66,13 @@
 
   .hero-content {
     position: relative;
+  }
+
+  .hero-logo {
+    width: 120px;
+    height: auto;
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(0 0 24px rgba(56, 189, 248, 0.3));
   }
 
   .hero-badge {
@@ -122,6 +138,19 @@
     transform: translateY(-1px);
     box-shadow: 0 8px 24px rgba(56, 189, 248, 0.25);
     color: var(--color-bg);
+  }
+
+  .btn-viewer {
+    border: 1px solid rgba(129, 140, 248, 0.4);
+    background: rgba(129, 140, 248, 0.1);
+    color: var(--color-accent);
+  }
+
+  .btn-viewer:hover {
+    background: rgba(129, 140, 248, 0.2);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(129, 140, 248, 0.2);
+    color: var(--color-accent);
   }
 
   .btn-outline {

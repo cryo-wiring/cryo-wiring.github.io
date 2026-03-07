@@ -33,10 +33,11 @@ const repos = [
   {
     name: "viewer",
     description:
-      "Read-only browser for cooldown.yaml files with metadata display, summary tables, and line detail views.",
+      "Read-only browser for cooldown.yaml files. Drop a file to instantly view cooldown metadata, wiring summary tables, and line details.",
     tags: ["React", "Vite", "TypeScript"],
     href: "https://github.com/cryo-wiring/viewer",
     docsHref: "https://cryo-wiring.github.io/viewer/",
+    liveHref: "https://cryo-wiring.github.io/viewer/",
   },
   {
     name: "template",
@@ -76,6 +77,16 @@ const repos = [
               )}
             </div>
             <p class="repo-description">{repo.description}</p>
+            {repo.liveHref && (
+              <a
+                href={repo.liveHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="repo-live-link"
+              >
+                Try it live &rarr;
+              </a>
+            )}
             <div class="repo-tags">
               {repo.tags.map((tag) => (
                 <span class="repo-tag">{tag}</span>
@@ -158,6 +169,27 @@ const repos = [
     line-height: 1.6;
     flex: 1;
     margin-bottom: 1rem;
+  }
+
+  .repo-live-link {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    padding: 0.5rem 1rem;
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 0.375rem;
+    margin-bottom: 1rem;
+    transition: all 0.2s;
+    width: fit-content;
+  }
+
+  .repo-live-link:hover {
+    background: rgba(56, 189, 248, 0.15);
+    border-color: rgba(56, 189, 248, 0.5);
+    color: var(--color-primary);
   }
 
   .repo-tags {

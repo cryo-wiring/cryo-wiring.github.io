@@ -5,7 +5,7 @@
 <footer class="footer">
   <div class="container footer-inner">
     <div class="footer-brand">
-      <span class="footer-logo">&#10052; cryo-wiring</span>
+      <span class="footer-logo"><img src="/logo.png" alt="cryo-wiring" class="footer-logo-img" /> cryo-wiring</span>
       <p class="footer-tagline">
         Open-source tools for dilution refrigerator wiring management.
       </p>
@@ -50,9 +50,17 @@
   }
 
   .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-weight: 700;
     font-size: 1.125rem;
     color: var(--color-text);
+  }
+
+  .footer-logo-img {
+    height: 1.5rem;
+    width: auto;
   }
 
   .footer-tagline {

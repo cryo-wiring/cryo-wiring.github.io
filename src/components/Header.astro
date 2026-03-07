@@ -9,11 +9,19 @@ const navLinks = [
 <header class="header">
   <div class="container header-inner">
     <a href="/" class="logo">
-      <span class="logo-icon">&#10052;</span>
+      <img src="/logo.png" alt="cryo-wiring" class="logo-icon" />
       <span class="logo-text">cryo-wiring</span>
     </a>
     <nav class="nav">
       {navLinks.map((link) => <a href={link.href} class="nav-link">{link.label}</a>)}
+      <a
+        href="https://cryo-wiring.github.io/viewer/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="nav-link nav-viewer"
+      >
+        Viewer
+      </a>
       <a
         href="https://github.com/cryo-wiring"
         target="_blank"
@@ -59,8 +67,8 @@ const navLinks = [
   }
 
   .logo-icon {
-    font-size: 1.5rem;
-    color: var(--color-primary);
+    height: 1.75rem;
+    width: auto;
   }
 
   .nav {
@@ -78,6 +86,19 @@ const navLinks = [
 
   .nav-link:hover {
     color: var(--color-text);
+  }
+
+  .nav-viewer {
+    padding: 0.375rem 1rem;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 0.375rem;
+    color: var(--color-primary);
+  }
+
+  .nav-viewer:hover {
+    background: rgba(56, 189, 248, 0.2);
+    color: var(--color-primary);
   }
 
   .nav-github {
