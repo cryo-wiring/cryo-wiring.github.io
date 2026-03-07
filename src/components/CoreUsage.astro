@@ -1,8 +1,11 @@
 ---
+import { Code } from "astro:components";
+
 const examples = [
   {
     title: "Define Components",
     description: "Create typed components with Pydantic v2 models.",
+    lang: "python" as const,
     code: `from cryo_wiring_core import (
     CooldownBuilder, ChipConfig, CooldownMetadata,
     Attenuator, Filter, Isolator, Amplifier, Stage,
@@ -20,6 +23,7 @@ catalog = {
   {
     title: "Build a Cooldown",
     description: "Fluent builder API with per-line overrides.",
+    lang: "python" as const,
     code: `cooldown = (
     CooldownBuilder(
         chip=ChipConfig(name="sample-8q", num_qubits=8, qubits_per_readout_line=4),
@@ -44,6 +48,7 @@ catalog = {
   {
     title: "Summary & Diagram",
     description: "Generate terminal tables, Markdown, HTML, and publication-quality SVG diagrams.",
+    lang: "python" as const,
     code: `# Print a Rich-formatted table to the terminal
 cooldown.summary()
 
@@ -57,6 +62,7 @@ cooldown.diagram(output="wiring.svg", representative=True)`,
   {
     title: "Export & Validate",
     description: "Write YAML files and validate against the spec.",
+    lang: "python" as const,
     code: `# Export as a cooldown directory
 cooldown.write("output/")
 # output/
@@ -92,7 +98,9 @@ validate_wiring(data)  # raises jsonschema.ValidationError on failure`,
                 <p class="example-description">{example.description}</p>
               </div>
             </div>
-            <pre class="example-code"><code>{example.code}</code></pre>
+            <div class="example-code-wrapper">
+              <Code code={example.code} lang={example.lang} theme="github-dark" />
+            </div>
           </div>
         ))
       }
@@ -177,18 +185,21 @@ validate_wiring(data)  # raises jsonschema.ValidationError on failure`,
     color: var(--color-text-muted);
   }
 
-  .example-code {
-    padding: 1.25rem 1.5rem;
+  .example-code-wrapper {
     overflow-x: auto;
-    margin: 0;
   }
 
-  .example-code code {
-    font-family: var(--font-mono);
+  .example-code-wrapper :global(pre) {
+    margin: 0;
+    padding: 1.25rem 1.5rem;
+    border-radius: 0;
     font-size: 0.8rem;
-    color: var(--color-success);
     line-height: 1.65;
-    white-space: pre;
+    background: transparent !important;
+  }
+
+  .example-code-wrapper :global(code) {
+    font-family: var(--font-mono);
   }
 
   .core-links {

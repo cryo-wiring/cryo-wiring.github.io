@@ -1,18 +1,23 @@
 ---
+import { Code } from "astro:components";
+
 const steps = [
   {
     step: "01",
     title: "Install the CLI",
+    lang: "bash" as const,
     code: "pip install cryo-wiring-cli",
   },
   {
     step: "02",
     title: "Create a new fridge",
+    lang: "bash" as const,
     code: "cryo-wiring new --fridge my-cryo --chip chip.yaml",
   },
   {
     step: "03",
     title: "Edit your wiring",
+    lang: "yaml" as const,
     code: `# my-cryo/current/control.yaml
 modules:
   ctrl:
@@ -33,17 +38,20 @@ lines:
   {
     step: "04",
     title: "Build & validate",
+    lang: "bash" as const,
     code: `cryo-wiring build my-cryo/current/
 cryo-wiring validate my-cryo/current/`,
   },
   {
     step: "05",
     title: "Generate diagrams",
+    lang: "bash" as const,
     code: "cryo-wiring diagram my-cryo/current/",
   },
   {
     step: "06",
     title: "Snapshot a cooldown",
+    lang: "bash" as const,
     code: "cryo-wiring snapshot my-cryo",
   },
 ];
@@ -62,7 +70,9 @@ cryo-wiring validate my-cryo/current/`,
             <div class="step-number">{item.step}</div>
             <div class="step-body">
               <h3 class="step-title">{item.title}</h3>
-              <pre class="step-code"><code>{item.code}</code></pre>
+              <div class="step-code-wrapper">
+                <Code code={item.code} lang={item.lang} theme="github-dark" />
+              </div>
             </div>
           </div>
         ))
@@ -114,19 +124,22 @@ cryo-wiring validate my-cryo/current/`,
     margin-bottom: 0.5rem;
   }
 
-  .step-code {
-    background: var(--color-bg-card);
+  .step-code-wrapper {
     border: 1px solid var(--color-border);
     border-radius: 0.5rem;
-    padding: 1rem 1.25rem;
     overflow-x: auto;
   }
 
-  .step-code code {
-    font-family: var(--font-mono);
+  .step-code-wrapper :global(pre) {
+    margin: 0;
+    padding: 1rem 1.25rem;
+    border-radius: 0.5rem;
     font-size: 0.825rem;
-    color: var(--color-success);
     line-height: 1.6;
-    white-space: pre;
+    background: var(--color-bg-card) !important;
+  }
+
+  .step-code-wrapper :global(code) {
+    font-family: var(--font-mono);
   }
 </style>
