@@ -1,0 +1,177 @@
+---
+const repos = [
+  {
+    name: "spec",
+    description:
+      "Formal specification and JSON Schema definitions for the YAML wiring format. Defines stages, component types, and line types.",
+    tags: ["JSON Schema", "Specification"],
+    href: "https://github.com/cryo-wiring/spec",
+    docsHref: "https://cryo-wiring.github.io/spec/",
+  },
+  {
+    name: "core",
+    description:
+      "Python library providing data models, validation, diagram generation, and programmatic building for wiring configurations.",
+    tags: ["Python", "Pydantic", "matplotlib"],
+    href: "https://github.com/cryo-wiring/core",
+    docsHref: "https://cryo-wiring.github.io/core/",
+  },
+  {
+    name: "cli",
+    description:
+      "Terminal interface for creating, validating, snapshotting, and visualizing cooldown wiring setups.",
+    tags: ["CLI", "Typer", "Python"],
+    href: "https://github.com/cryo-wiring/cli",
+  },
+  {
+    name: "app",
+    description:
+      "Web application with FastAPI backend and Next.js frontend for browsing, editing, and managing wiring configs.",
+    tags: ["FastAPI", "Next.js", "Docker"],
+    href: "https://github.com/cryo-wiring/app",
+  },
+  {
+    name: "viewer",
+    description:
+      "Read-only browser for cooldown.yaml files with metadata display, summary tables, and line detail views.",
+    tags: ["React", "Vite", "TypeScript"],
+    href: "https://github.com/cryo-wiring/viewer",
+    docsHref: "https://cryo-wiring.github.io/viewer/",
+  },
+  {
+    name: "template",
+    description:
+      "GitHub template repository for creating dilution refrigerator wiring data repositories with recommended structure.",
+    tags: ["Template", "YAML"],
+    href: "https://github.com/cryo-wiring/template",
+  },
+];
+---
+
+<section id="ecosystem" class="section ecosystem-section">
+  <div class="container">
+    <h2 class="section-title">Ecosystem</h2>
+    <p class="section-subtitle">
+      A modular, well-separated architecture across six repositories.
+    </p>
+    <div class="ecosystem-grid">
+      {
+        repos.map((repo) => (
+          <div class="repo-card">
+            <div class="repo-header">
+              <h3 class="repo-name">
+                <a href={repo.href} target="_blank" rel="noopener noreferrer">
+                  cryo-wiring/<span class="repo-name-highlight">{repo.name}</span>
+                </a>
+              </h3>
+              {repo.docsHref && (
+                <a
+                  href={repo.docsHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="repo-docs-link"
+                >
+                  Docs
+                </a>
+              )}
+            </div>
+            <p class="repo-description">{repo.description}</p>
+            <div class="repo-tags">
+              {repo.tags.map((tag) => (
+                <span class="repo-tag">{tag}</span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .ecosystem-section {
+    background: var(--color-bg-secondary);
+  }
+
+  .ecosystem-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .repo-card {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.2s;
+  }
+
+  .repo-card:hover {
+    border-color: rgba(129, 140, 248, 0.3);
+  }
+
+  .repo-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+
+  .repo-name {
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: var(--font-mono);
+  }
+
+  .repo-name a {
+    color: var(--color-text-muted);
+  }
+
+  .repo-name a:hover {
+    color: var(--color-text);
+  }
+
+  .repo-name-highlight {
+    color: var(--color-primary);
+  }
+
+  .repo-docs-link {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    padding: 0.25rem 0.75rem;
+    border: 1px solid rgba(129, 140, 248, 0.3);
+    border-radius: 9999px;
+  }
+
+  .repo-docs-link:hover {
+    background: rgba(129, 140, 248, 0.1);
+    color: var(--color-accent);
+  }
+
+  .repo-description {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    flex: 1;
+    margin-bottom: 1rem;
+  }
+
+  .repo-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .repo-tag {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    padding: 0.2rem 0.6rem;
+    background: var(--color-bg-card);
+    border-radius: 0.25rem;
+  }
+</style>

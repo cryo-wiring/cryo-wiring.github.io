@@ -1,0 +1,132 @@
+---
+const steps = [
+  {
+    step: "01",
+    title: "Install the CLI",
+    code: "pip install cryo-wiring-cli",
+  },
+  {
+    step: "02",
+    title: "Create a new fridge",
+    code: "cryo-wiring new --fridge my-cryo --chip chip.yaml",
+  },
+  {
+    step: "03",
+    title: "Edit your wiring",
+    code: `# my-cryo/current/control.yaml
+modules:
+  ctrl:
+    stages:
+      50K:
+        - XMA-10dB
+      4K:
+        - XMA-20dB
+      MXC:
+        - XMA-20dB
+        - Eccosorb
+
+lines:
+  - line_id: C00
+    qubit: Q00
+    module: ctrl`,
+  },
+  {
+    step: "04",
+    title: "Build & validate",
+    code: `cryo-wiring build my-cryo/current/
+cryo-wiring validate my-cryo/current/`,
+  },
+  {
+    step: "05",
+    title: "Generate diagrams",
+    code: "cryo-wiring diagram my-cryo/current/",
+  },
+  {
+    step: "06",
+    title: "Snapshot a cooldown",
+    code: "cryo-wiring snapshot my-cryo",
+  },
+];
+---
+
+<section id="quickstart" class="section">
+  <div class="container">
+    <h2 class="section-title">Quick Start</h2>
+    <p class="section-subtitle">
+      Get up and running with cryo-wiring in minutes.
+    </p>
+    <div class="steps">
+      {
+        steps.map((item) => (
+          <div class="step-card">
+            <div class="step-number">{item.step}</div>
+            <div class="step-body">
+              <h3 class="step-title">{item.title}</h3>
+              <pre class="step-code"><code>{item.code}</code></pre>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .steps {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .step-card {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+
+  .step-number {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 0.5rem;
+    background: rgba(56, 189, 248, 0.05);
+    margin-top: 0.25rem;
+  }
+
+  .step-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .step-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .step-code {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 1rem 1.25rem;
+    overflow-x: auto;
+  }
+
+  .step-code code {
+    font-family: var(--font-mono);
+    font-size: 0.825rem;
+    color: var(--color-success);
+    line-height: 1.6;
+    white-space: pre;
+  }
+</style>

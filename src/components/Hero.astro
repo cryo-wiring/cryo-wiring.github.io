@@ -1,0 +1,150 @@
+---
+
+---
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="container hero-content">
+    <p class="hero-badge">Open Source &middot; MIT License</p>
+    <h1 class="hero-title">
+      Documentation for<br />
+      <span class="hero-highlight">cryo-wiring</span>
+    </h1>
+    <p class="hero-description">
+      A comprehensive suite of tools for managing and visualizing dilution
+      refrigerator wiring configurations for quantum computing systems.
+    </p>
+    <div class="hero-actions">
+      <a href="#quickstart" class="btn btn-primary">Get Started</a>
+      <a
+        href="https://github.com/cryo-wiring"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-outline"
+      >
+        View on GitHub
+      </a>
+    </div>
+    <div class="hero-install">
+      <code>pip install cryo-wiring-cli</code>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    padding: 10rem 0 6rem;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        ellipse 80% 50% at 50% -20%,
+        rgba(56, 189, 248, 0.12),
+        transparent
+      ),
+      radial-gradient(
+        ellipse 60% 40% at 80% 60%,
+        rgba(129, 140, 248, 0.06),
+        transparent
+      );
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-primary);
+    padding: 0.35rem 1rem;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 9999px;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-highlight {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-description {
+    font-size: 1.2rem;
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.75rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--color-primary-dim), var(--color-primary));
+    color: var(--color-bg);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(56, 189, 248, 0.25);
+    color: var(--color-bg);
+  }
+
+  .btn-outline {
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .hero-install {
+    display: inline-block;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .hero-install code {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--color-success);
+  }
+</style>
