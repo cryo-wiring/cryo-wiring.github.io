@@ -69,7 +69,7 @@ const DEMO_LINES: LineEntry[] = [
         "50K": [{ type: "amplifier", manufacturer: "LNF", model: "LNC03_14A", gain_dB: 40 }],
         "4K": [],
         Still: [],
-        CP: [],
+        CP: [{ type: "isolator", manufacturer: "LNF", model: "ISC4_12A" }],
         MXC: [],
       },
     },
