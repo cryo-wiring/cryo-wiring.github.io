@@ -10,15 +10,15 @@ const steps = [
   },
   {
     step: "02",
-    title: "Create a new fridge",
+    title: "Create a new cooldown",
     lang: "bash" as const,
-    code: "cryo-wiring new --fridge my-cryo --chip chip.yaml",
+    code: "cryo-wiring new my-cryo --chip chip.yaml",
   },
   {
     step: "03",
     title: "Edit your wiring",
     lang: "yaml" as const,
-    code: `# my-cryo/current/control.yaml
+    code: `# my-cryo/2026/cd001/control.yaml
 modules:
   ctrl:
     stages:
@@ -39,20 +39,20 @@ lines:
     step: "04",
     title: "Build & validate",
     lang: "bash" as const,
-    code: `cryo-wiring build my-cryo/current/
-cryo-wiring validate my-cryo/current/`,
+    code: `cryo-wiring build my-cryo/2026/cd001/
+cryo-wiring validate my-cryo/2026/cd001/`,
   },
   {
     step: "05",
     title: "Generate diagrams",
     lang: "bash" as const,
-    code: "cryo-wiring diagram my-cryo/current/",
+    code: "cryo-wiring diagram my-cryo/2026/cd001/",
   },
   {
     step: "06",
-    title: "Snapshot a cooldown",
+    title: "Add another cooldown",
     lang: "bash" as const,
-    code: "cryo-wiring snapshot my-cryo",
+    code: "cryo-wiring new my-cryo  # creates my-cryo/2026/cd002/",
   },
 ];
 ---
