@@ -6,7 +6,7 @@ const examples = [
     title: "Define Components",
     description: "Create typed components with Pydantic v2 models.",
     lang: "python" as const,
-    code: `from cryo_wiring_core import (
+    code: `from cryowire import (
     CooldownBuilder, ChipConfig, CooldownMetadata,
     Attenuator, Filter, Isolator, Amplifier, Stage,
 )
@@ -74,7 +74,7 @@ cooldown.write("output/")
 # └── readout_return.yaml
 
 # Validate existing YAML files
-from cryo_wiring_core import validate_wiring
+from cryowire import validate_wiring
 validate_wiring(data)  # raises jsonschema.ValidationError on failure`,
   },
 ];
@@ -85,7 +85,7 @@ validate_wiring(data)  # raises jsonschema.ValidationError on failure`,
     <h2 class="section-title">Python API</h2>
     <p class="section-subtitle">
       Build, validate, and visualize wiring configurations programmatically with
-      <code class="inline-code">cryo-wiring-core</code>.
+      <code class="inline-code">cryowire</code>.
     </p>
     <div class="examples">
       {
@@ -107,7 +107,7 @@ validate_wiring(data)  # raises jsonschema.ValidationError on failure`,
     </div>
     <div class="core-links">
       <a
-        href="https://cryo-wiring.github.io/core/"
+        href="https://cryowire.github.io/core/"
         target="_blank"
         rel="noopener noreferrer"
         class="core-link"
@@ -115,7 +115,7 @@ validate_wiring(data)  # raises jsonschema.ValidationError on failure`,
         API Reference
       </a>
       <a
-        href="https://github.com/cryo-wiring/core/blob/main/examples/getting_started.py"
+        href="https://github.com/cryowire/core/blob/main/examples/getting_started.py"
         target="_blank"
         rel="noopener noreferrer"
         class="core-link core-link-secondary"

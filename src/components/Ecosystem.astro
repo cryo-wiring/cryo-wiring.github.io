@@ -5,67 +5,67 @@ const repos = [
     description:
       "Formal specification and JSON Schema definitions for the YAML wiring format. Defines stages, component types, and line types.",
     tags: ["JSON Schema", "Specification"],
-    href: "https://github.com/cryo-wiring/spec",
-    docsHref: "https://cryo-wiring.github.io/spec/",
+    href: "https://github.com/cryowire/spec",
+    docsHref: "https://cryowire.github.io/spec/",
   },
   {
     name: "core",
     description:
       "Python library providing data models, validation, diagram generation, and programmatic building for wiring configurations.",
     tags: ["Python", "Pydantic", "matplotlib"],
-    href: "https://github.com/cryo-wiring/core",
-    docsHref: "https://cryo-wiring.github.io/core/",
+    href: "https://github.com/cryowire/core",
+    docsHref: "https://cryowire.github.io/core/",
   },
   {
     name: "cli",
     description:
       "Terminal interface for creating, validating, building, and visualizing cooldown wiring setups.",
     tags: ["CLI", "Typer", "Python"],
-    href: "https://github.com/cryo-wiring/cli",
+    href: "https://github.com/cryowire/cli",
   },
   {
     name: "app",
     description:
       "Web application with FastAPI backend and Next.js frontend for browsing, editing, and managing wiring configs.",
     tags: ["FastAPI", "Next.js", "Docker"],
-    href: "https://github.com/cryo-wiring/app",
+    href: "https://github.com/cryowire/app",
   },
   {
     name: "viewer",
     description:
       "Read-only browser for cooldown.yaml files. Drop a file to instantly view cooldown metadata, wiring summary tables, and line details.",
     tags: ["React", "Vite", "TypeScript"],
-    href: "https://github.com/cryo-wiring/viewer",
-    docsHref: "https://cryo-wiring.github.io/viewer/",
-    liveHref: "https://cryo-wiring.github.io/viewer/",
+    href: "https://github.com/cryowire/viewer",
+    docsHref: "https://cryowire.github.io/viewer/",
+    liveHref: "https://cryowire.github.io/viewer/",
   },
   {
     name: "template",
     description:
       "GitHub template repository for creating dilution refrigerator wiring data repositories with recommended structure.",
     tags: ["Template", "YAML"],
-    href: "https://github.com/cryo-wiring/template",
+    href: "https://github.com/cryowire/template",
   },
   {
     name: "vscode-extension",
     description:
       "VS Code extension that previews cooldown.yaml files as interactive wiring diagrams in a side panel with auto-reload.",
     tags: ["VS Code", "TypeScript"],
-    href: "https://github.com/cryo-wiring/vscode-extension",
+    href: "https://github.com/cryowire/vscode-extension",
   },
   {
     name: "chrome-extension",
     description:
-      "Chrome extension that detects cooldown.yaml on GitHub and opens the cryo-wiring viewer with one click.",
+      "Chrome extension that detects cooldown.yaml on GitHub and opens the cryowire viewer with one click.",
     tags: ["Chrome", "React", "TypeScript"],
-    href: "https://github.com/cryo-wiring/chrome-extension",
+    href: "https://github.com/cryowire/chrome-extension",
   },
   {
     name: "action",
     description:
       "GitHub Action that auto-discovers cooldown directories and runs validate + build in CI on every push and pull request.",
     tags: ["GitHub Actions", "CI/CD"],
-    href: "https://github.com/cryo-wiring/action",
+    href: "https://github.com/cryowire/action",
   },
 ];
 ---
@@ -83,7 +83,7 @@ const repos = [
             <div class="repo-header">
               <h3 class="repo-name">
                 <a href={repo.href} target="_blank" rel="noopener noreferrer">
-                  cryo-wiring/<span class="repo-name-highlight">{repo.name}</span>
+                  cryowire/<span class="repo-name-highlight">{repo.name}</span>
                 </a>
               </h3>
               {repo.docsHref && (

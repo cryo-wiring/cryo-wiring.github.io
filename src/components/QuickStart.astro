@@ -6,13 +6,13 @@ const steps = [
     step: "01",
     title: "Install the CLI",
     lang: "bash" as const,
-    code: "pip install cryo-wiring-cli",
+    code: "pip install cryowire-cli",
   },
   {
     step: "02",
     title: "Create a new cooldown",
     lang: "bash" as const,
-    code: "cryo-wiring new my-cryo --chip chip.yaml",
+    code: "cryowire new my-cryo --chip chip.yaml",
   },
   {
     step: "03",
@@ -39,20 +39,20 @@ lines:
     step: "04",
     title: "Build & validate",
     lang: "bash" as const,
-    code: `cryo-wiring build my-cryo/2026/cd001/
-cryo-wiring validate my-cryo/2026/cd001/`,
+    code: `cryowire build my-cryo/2026/cd001/
+cryowire validate my-cryo/2026/cd001/`,
   },
   {
     step: "05",
     title: "Generate diagrams",
     lang: "bash" as const,
-    code: "cryo-wiring diagram my-cryo/2026/cd001/",
+    code: "cryowire diagram my-cryo/2026/cd001/",
   },
   {
     step: "06",
     title: "Add another cooldown",
     lang: "bash" as const,
-    code: "cryo-wiring new my-cryo  # creates my-cryo/2026/cd002/",
+    code: "cryowire new my-cryo  # creates my-cryo/2026/cd002/",
   },
 ];
 ---
@@ -61,7 +61,7 @@ cryo-wiring validate my-cryo/2026/cd001/`,
   <div class="container">
     <h2 class="section-title">Quick Start</h2>
     <p class="section-subtitle">
-      Get up and running with cryo-wiring in minutes.
+      Get up and running with cryowire in minutes.
     </p>
     <div class="steps">
       {

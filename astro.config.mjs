@@ -1,5 +1,5 @@
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: "https://cryo-wiring.github.io",
+  site: "https://cryowire.github.io",
 });
