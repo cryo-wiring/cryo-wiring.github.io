@@ -68,3 +68,28 @@ a:hover {
   max-width: 640px;
   margin: 0 auto 3rem;
 }
+
+/* ── Scroll-driven reveal animations ─────────────────────── */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  will-change: transform, opacity;
+}
+
+.scroll-reveal-left {
+  opacity: 0;
+  transform: translateX(-48px);
+  will-change: transform, opacity;
+}
+
+.scroll-reveal-right {
+  opacity: 0;
+  transform: translateX(48px);
+  will-change: transform, opacity;
+}
+
+.scroll-reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+  will-change: transform, opacity;
+}

@@ -22,3 +22,67 @@ import Footer from "../components/Footer.astro";
   </main>
   <Footer />
 </Layout>
+
+<script>
+  function lerp(a: number, b: number, t: number) {
+    return a + (b - a) * t;
+  }
+
+  function updateScrollReveal() {
+    const vh = window.innerHeight;
+
+    document.querySelectorAll<HTMLElement>('.scroll-reveal').forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      const t = Math.max(0, Math.min(1, (vh - rect.top) / (vh * 0.5)));
+      el.style.opacity = String(t);
+      el.style.transform = `translateY(${lerp(32, 0, t)}px)`;
+    });
+
+    document.querySelectorAll<HTMLElement>('.scroll-reveal-left').forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      const t = Math.max(0, Math.min(1, (vh - rect.top) / (vh * 0.5)));
+      el.style.opacity = String(t);
+      el.style.transform = `translateX(${lerp(-48, 0, t)}px)`;
+    });
+
+    document.querySelectorAll<HTMLElement>('.scroll-reveal-right').forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      const t = Math.max(0, Math.min(1, (vh - rect.top) / (vh * 0.5)));
+      el.style.opacity = String(t);
+      el.style.transform = `translateX(${lerp(48, 0, t)}px)`;
+    });
+
+    document.querySelectorAll<HTMLElement>('.scroll-reveal-scale').forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      const t = Math.max(0, Math.min(1, (vh - rect.top) / (vh * 0.5)));
+      el.style.opacity = String(t);
+      el.style.transform = `scale(${lerp(0.92, 1, t)})`;
+    });
+
+    // Staggered children
+    document.querySelectorAll<HTMLElement>('.scroll-stagger').forEach((parent) => {
+      const rect = parent.getBoundingClientRect();
+      const baseT = Math.max(0, Math.min(1, (vh - rect.top) / (vh * 0.5)));
+      parent.querySelectorAll<HTMLElement>(':scope > *').forEach((child, i) => {
+        const t = Math.max(0, Math.min(1, baseT - i * 0.08));
+        child.style.opacity = String(t);
+        child.style.transform = `translateY(${lerp(24, 0, t)}px)`;
+      });
+    });
+
+    // Diagram SVG perspective slide-in
+    document.querySelectorAll<HTMLElement>('.diagram-output-frame').forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      const t = Math.max(0, Math.min(1, (vh - rect.top) / (vh * 0.5)));
+      const translateX = lerp(120, 0, t);
+      const rotateY = lerp(-25, -6, t);
+      const rotateZ = lerp(3, 0, t);
+      el.style.transform = `translateX(${translateX}%) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
+      el.style.opacity = String(Math.min(1, t * 2));
+    });
+  }
+
+  window.addEventListener('scroll', updateScrollReveal, { passive: true });
+  window.addEventListener('resize', updateScrollReveal, { passive: true });
+  updateScrollReveal();
+</script>
