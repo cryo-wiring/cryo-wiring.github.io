@@ -1,5 +1,5 @@
 ---
-
+import { HeroDiagram } from "./HeroDiagram";
 ---
 
 <section class="hero">
@@ -15,15 +15,15 @@
       refrigerator wiring configurations for quantum computing systems.
     </p>
     <div class="hero-actions">
-      <a href="#quickstart" class="btn btn-primary">Get Started</a>
       <a
         href="https://cryowire.github.io/viewer/"
         target="_blank"
         rel="noopener noreferrer"
-        class="btn btn-viewer"
+        class="btn btn-primary"
       >
         Try the Viewer
       </a>
+      <a href="#quickstart" class="btn btn-viewer">Get Started</a>
       <a
         href="https://github.com/cryowire"
         target="_blank"
@@ -33,8 +33,15 @@
         View on GitHub
       </a>
     </div>
-    <div class="hero-install">
-      <code>pip install cryowire-cli</code>
+    <div class="hero-demo">
+      <a
+        href="https://cryowire.github.io/viewer/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hero-demo-link"
+      >
+        <HeroDiagram client:load />
+      </a>
     </div>
   </div>
 </section>
@@ -155,17 +162,27 @@
     color: var(--color-primary);
   }
 
-  .hero-install {
-    display: inline-block;
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: 0.5rem;
-    padding: 0.75rem 1.5rem;
+  .hero-demo {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
   }
 
-  .hero-install code {
-    font-family: var(--font-mono);
-    font-size: 0.9rem;
-    color: var(--color-success);
+  .hero-demo-link {
+    display: block;
+    max-width: 500px;
+    width: 100%;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid var(--color-border);
+    background: rgba(15, 23, 42, 0.6);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(56, 189, 248, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
   }
+
+  .hero-demo-link:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(56, 189, 248, 0.2);
+  }
+
 </style>
