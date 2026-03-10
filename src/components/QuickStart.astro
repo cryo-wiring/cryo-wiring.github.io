@@ -12,7 +12,8 @@ const steps = [
     step: "02",
     title: "Initialize a data project",
     lang: "bash" as const,
-    code: "cryowire init ./my-data",
+    code: `cryowire init ./my-data
+cd my-data`,
   },
   {
     step: "03",
@@ -25,13 +26,13 @@ vi templates/*.yaml       # adjust standard wiring modules`,
     step: "04",
     title: "Create a new cooldown",
     lang: "bash" as const,
-    code: "cryowire new my-cryo --qubits 8",
+    code: "cryowire new your-cryo --qubits 8",
   },
   {
     step: "05",
     title: "Edit your wiring",
     lang: "yaml" as const,
-    code: `# my-cryo/2026/cd001/control.yaml
+    code: `# your-cryo/2026/cd001/control.yaml
 modules:
   ctrl:
     stages:
@@ -52,8 +53,8 @@ lines:
     step: "06",
     title: "Build & validate",
     lang: "bash" as const,
-    code: `cryowire build my-cryo/2026/cd001/
-cryowire validate my-cryo/2026/cd001/`,
+    code: `cryowire build your-cryo/2026/cd001/
+cryowire validate your-cryo/2026/cd001/`,
   },
 ];
 ---
