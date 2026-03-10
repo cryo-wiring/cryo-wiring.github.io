@@ -4,18 +4,31 @@ import { Code } from "astro:components";
 const steps = [
   {
     step: "01",
-    title: "Install the CLI",
+    title: "Install",
     lang: "bash" as const,
-    code: "pip install cryowire-cli",
+    code: "pip install cryowire",
   },
   {
     step: "02",
-    title: "Create a new cooldown",
+    title: "Initialize a data project",
     lang: "bash" as const,
-    code: "cryowire new my-cryo --chip chip.yaml",
+    code: "cryowire init ./my-data",
   },
   {
     step: "03",
+    title: "Customize components & modules",
+    lang: "bash" as const,
+    code: `vi components.yaml        # define your lab's parts
+vi templates/*.yaml       # adjust standard wiring modules`,
+  },
+  {
+    step: "04",
+    title: "Create a new cooldown",
+    lang: "bash" as const,
+    code: "cryowire new my-cryo --qubits 8",
+  },
+  {
+    step: "05",
     title: "Edit your wiring",
     lang: "yaml" as const,
     code: `# my-cryo/2026/cd001/control.yaml
@@ -36,23 +49,11 @@ lines:
     module: ctrl`,
   },
   {
-    step: "04",
+    step: "06",
     title: "Build & validate",
     lang: "bash" as const,
     code: `cryowire build my-cryo/2026/cd001/
 cryowire validate my-cryo/2026/cd001/`,
-  },
-  {
-    step: "05",
-    title: "Generate diagrams",
-    lang: "bash" as const,
-    code: "cryowire diagram my-cryo/2026/cd001/",
-  },
-  {
-    step: "06",
-    title: "Add another cooldown",
-    lang: "bash" as const,
-    code: "cryowire new my-cryo  # creates my-cryo/2026/cd002/",
   },
 ];
 ---
